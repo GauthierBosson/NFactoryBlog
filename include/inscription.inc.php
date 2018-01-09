@@ -31,7 +31,7 @@ if(isset($_POST["formulaire"])) {
     else {
         echo("<p>Pas d'erreurs</p>");
         $connexion = mysqli_connect("localhost", "root", "", "blog");
-        $requete
+        $requete;
     }
 }
 

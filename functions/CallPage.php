@@ -1,5 +1,5 @@
 <?php
-function callback()
+function callpage()
 {
     if (isset($_GET['page']) && $_GET['page'] != "") {
         $page = $_GET['page'];
@@ -18,4 +18,3 @@ function callback()
     }
 }
 
-?>
