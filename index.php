@@ -12,27 +12,8 @@
 <div id="container">
 <?php include_once("./include/header.php");?>
 <main>
-<?php
-if (isset($_GET['page']) && $_GET['page'] != "") {
-    $page = $_GET['page'];    
-}
-
-else {
-    $page = "default";
-}
-
-$page = "./include/" . $page . ".inc.php";
-
-$incFiles = glob("./include/*.inc.php");
-
-if(in_array($page, $incFiles)) {
-    include($page);
-}
-
-else {
-    include("./include/default.inc.php");
-}
-
+    <?php
+include_once("./functions/CallPage.php");
 ?>
 </main>
 <?php include_once("./include/footer.php");
