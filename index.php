@@ -1,3 +1,4 @@
+<?php include_once("./functions/CallPage.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,8 +13,9 @@
 <div id="container">
 <?php include_once("./include/header.php"); ?>
 <main>
-    <?php include_once("./functions/CallPage.php");
-    callpage(); ?>
+    <?php
+    callpage();
+    ?>
 </main>
 <?php include_once("./include/footer.php");
 ?>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c3950fd3-3547-4ead-b1be-34c0280687b2" name="Serveur local" url="http://localhost/NFactoryBlog">
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\NFactoryBlog" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
