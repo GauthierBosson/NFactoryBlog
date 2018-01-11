@@ -29,15 +29,16 @@ if(isset($_POST["formulaire"])) {
             die("Erreur MySQL " . mysqli_connect_errno() . " : " . mysqli_connect_error());
         }
         else {
+            $mdp = sha1($_POST['password']);
             $requete = "INSERT INTO t_users (ID_USER, USERNAME, USERFNAME,
                         USERMAIL, USERPASSWORD, USERDATEINS, T_ROLES_ID_ROLE)
-                        VALUES (NULL, '$nom', '$prenom', '$mail', SHA1('$mdp'), NULL, 5);";
+                        VALUES (NULL, '$nom', '$prenom', '$mail', '$mdp', NULL, 5);";
             mysqli_query($connexion, $requete);
             mysqli_close($connexion);
         }
     }
 }
 else {
-    echo("Je viens d'ailleurs");
+    echo("<p>Je viens d'ailleurs</p>");
     include("./include/formInscription.php");
 }
