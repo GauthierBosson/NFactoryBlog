@@ -10,6 +10,7 @@ include_once("./functions/CallPage.php"); ?>
     <link rel="stylesheet" href="./assets/css/normalize.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Blog</title>
+    <script src="./assets/js/functions.js"></script>
 </head>
 <body>
 <div id="container">
