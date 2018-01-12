@@ -1,6 +1,6 @@
 <h1>login</h1>
 <?php
-if(isset($_POST["formulaire"])) {
+if(isset($_POST["login"])) {
     $tabErreur = array();
     $mail = $_POST['mail'];
     $mdp = $_POST['password'];
@@ -24,15 +24,18 @@ if(isset($_POST["formulaire"])) {
         }
         else {
             $mdp = sha1($_POST['password']);
-            $requete = "SELECT * FROM t_users WHERE USERMAIL='$mail' #operator_and target=\"mysql_doc\">AND USERPASSWORD='$mdp'";
-            mysqli_query($connexion, $requete);
-            mysqli_close($connexion);
-            "SELECT COUNT(*) FROM t_users";
-            session_start();
+            $requete = "SELECT * FROM t_users WHERE USERMAIL='$mail' AND USERPASSWORD='$mdp'";
 
-            $_SESSION['mail'] = $mail;
-            $_SESSION['password'] = $mdp;
+            if($result = mysqli_query($connexion, $requete)){
+                if(mysqli_num_rows($result) > 0) {
+                    $_SESSION['login'] = 1;
+                    echo "<a href=\"http://localhost/NFactoryBlog/index.php?page=accueil\">Vous êtes connectés, aller sur la page d'accueil</a>";
+                }
+                else
+                    $_SESSION['login'] = 0;
+            }
         }
+        mysqli_close($connexion);
     }
 }
 else {

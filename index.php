@@ -1,4 +1,6 @@
-<?php include_once("./functions/CallPage.php"); ?>
+<?php
+session_start();
+include_once("./functions/CallPage.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
