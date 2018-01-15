@@ -11,6 +11,8 @@ include_once("./functions/CallPage.php"); ?>
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Blog</title>
     <script src="./assets/js/functions.js"></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body>
 <div id="container">
