@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
     background-color: lightgrey;
 }
@@ -26,7 +28,8 @@ header ul li {
 }
 
 header ul li a {
-    
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
