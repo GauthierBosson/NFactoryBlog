@@ -5,15 +5,12 @@ if($_SESSION['login'] == 1){
         $titre = $_POST['titre'];
         $chapo = $_POST['chapo'];
         $message = $_POST['corps'];
-        $date = $_POST['date'];
         if($_POST["titre"] == "")
             array_push($tabErreur, "Veuillez renseigné un titre");
         if($_POST["chapo"] == "")
             array_push($tabErreur, "Veuillez renseigné un sous-titre");
         if($_POST["corps"] == "")
             array_push($tabErreur, "Veuillez renseigné votre message");
-        if($_POST["date"] == "")
-            array_push($tabErreur, "Veuillez renseigné une date");
         if(count($tabErreur) != 0) {
             $message = "<ul>";
             for($i = 0 ; $i < count($tabErreur) ; $i++) {
@@ -33,7 +30,7 @@ if($_SESSION['login'] == 1){
                 $titre=addslashes(utf8_decode($titre));
                 $requete = "INSERT INTO t_articles (ID_ARTICLE, ARTTITRE, ARTCHAPO,
                         ARTCONTENU, ARTDATE)
-                        VALUES (NULL, '$titre', '$chapo', '$message', '$date');";
+                        VALUES (NULL, '$titre', '$chapo', '$message', NOW());";
 
                 if($result = mysqli_query($connexion, $requete)) {
 

@@ -16,11 +16,6 @@
     </div>
     <br>
     <div>
-        <label for="date">Date de publication :</label>
-        <input type="date" name="date" id="date" placeholder="mm">
-    </div>
-    <br>
-    <div>
         <select name="Catégories">
             <option value="actualité">Actualités</option>
             <option value="archive">Archivé</option>
