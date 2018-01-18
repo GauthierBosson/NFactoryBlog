@@ -7,11 +7,14 @@ if(isset($_POST["formulaire"])) {
     $mail = $_POST['mail'];
     $mdp = $_POST['password'];
 
-    if($_POST["nom"] == "")
+    if($_POST["nom"] == "") {
         array_push($tabErreur, "Veuillez saisir votre nom");
+    }elseif (filter_var($nom, FILTER_SANITIZE_STRING)) {
+        array_push($tabErreur, "Caractères non autorisés");
+    }
     if($_POST["prenom"] == "")
         array_push($tabErreur, "Veuillez saisir votre prénom");
-    if($_POST["mail"] == "")
+    if($_POST["mail"] == "" || !filter_var($mail, FILTER_VALIDATE_EMAIL))
         array_push($tabErreur, "Veuillez saisir votre e-mail");
     if($_POST["password"] == "")
         array_push($tabErreur, "Veuillez saisir un mot de passe");

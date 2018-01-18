@@ -4,8 +4,8 @@ if (isset($_POST['login'])) {
     $tabErreur = array();
     $mail = $_POST['mail'];
     $password = $_POST['password'];
-    if ($mail == "")
-        array_push($tabErreur, "Veuillez saisir une adresse");
+    if ($mail == "" || !filter_var($mail, FILTER_VALIDATE_EMAIL))
+        array_push($tabErreur, "Veuillez saisir une adresse valide");
     if ($password == "")
         array_push($tabErreur, "Veuillez saisir un mot de passe");
     if (count($tabErreur) > 0) {

@@ -1,6 +1,17 @@
 <?php
+if (isset($_COOKIE['visite'])) {
+    setCookie('visite', $_COOKIE['visite'] + 1, time() + 365*24*3600);
+} else {
+    setCookie('visite', 1);
+
+}
+?>
+<?php
 session_start();
-include_once("./functions/CallPage.php"); ?>
+include_once("./functions/CallPage.php");
+echo($_COOKIE['visite'] . " visites");
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
