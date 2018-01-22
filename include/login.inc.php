@@ -18,17 +18,32 @@ if (isset($_POST['login'])) {
         include ("./include/formLogin.php");
     }
     else {
-        $connexion = mysqli_connect("localhost", "root", "", "nfactoryblog");
-        if (!$connexion) {
+        $dsn = "mysql:dbname=nfactoryblog;
+        host=localhost;
+        charset=utf8";
+        $username = "root";
+        $mdp = "";
+
+        //$db = new PDO($dsn, $username, $password);
+
+        try {
+            $db = new PDO($dsn, $username, $mdp);
+        }
+
+        catch (PDOException $e) {
+            echo ($e -> getMessage());
+        }
+        if (!$db) {
             die("Erreur MySQL " . mysqli_connect_errno() . " : " . mysqli_connect_error());
         }
         else {
             $password = sha1($password);
             $requete = "SELECT * FROM t_users WHERE USERMAIL='$mail' AND USERPASSWORD='$password'";
-            if($result = mysqli_query($connexion, $requete)) {
-                if (mysqli_num_rows($result) > 0) {
+            if($result = $db -> query($requete)) {
+                $ligne = $result -> rowCount();
+                if ($ligne > 0) {
                     $_SESSION['login'] = 1;
-                    while ($donnees=mysqli_fetch_array($result)){
+                    while ($donnees = $result -> fetch(PDO::FETCH_ASSOC)){
                         if ($donnees['T_ROLES_ID_ROLE'] == 1 || $donnees['T_ROLES_ID_ROLE'] == 2){
                             echo ("<script>redirection(\"index.php?page=admin\")</script>");
                             $_SESSION['admin'] = 1;
@@ -43,7 +58,7 @@ if (isset($_POST['login'])) {
                     echo ("Votre e-mail ou mot de passe est érronné");
             }
         }
-        mysqli_close($connexion);
+        unset($db);
     }
 }
 else {

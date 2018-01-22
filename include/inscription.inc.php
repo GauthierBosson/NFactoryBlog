@@ -29,22 +29,36 @@ if(isset($_POST["formulaire"])) {
         include("./include/formInscription.php");
     }
     else {
-        $connexion = mysqli_connect("localhost", "root", "", "nfactoryblog");
-        if (!$connexion) {
+        $dsn = "mysql:dbname=nfactoryblog;
+        host=localhost;
+        charset=utf8";
+        $username = "root";
+        $password = "";
+
+        //$db = new PDO($dsn, $username, $password);
+
+        try {
+            $db = new PDO($dsn, $username, $password);
+        }
+
+        catch (PDOException $e) {
+            echo ($e -> getMessage());
+        }
+        if (!$db) {
             die("Erreur MySQL " . mysqli_connect_errno() . " : " . mysqli_connect_error());
         }
         else {
             $requeteLogin = ("SELECT * FROM `t_users` WHERE `USERMAIL` = '$mail'");
-            if ($result = mysqli_query($connexion,$requeteLogin)){
-                if (mysqli_num_rows($result) != 0){
+            if ($result = $db -> query($requeteLogin)){
+                if ($ligne = $result -> rowCount() != 0){
                     echo "Votre e-mail est deja utilisé ";
                 }else{
                     $mdp = sha1($_POST['password']);
                     $requete = "INSERT INTO t_users (ID_USER, USERNAME, USERFNAME,
                             USERMAIL, USERPASSWORD, USERDATEINS, T_ROLES_ID_ROLE)
                             VALUES (NULL, '$nom', '$prenom', '$mail', '$mdp', NULL, 5);";
-                    mysqli_query($connexion, $requete);
-                    mysqli_close($connexion);
+                    $result2 = $db -> query($requete);
+                    unset($db);
                 }
             }else{
                 die($requeteLogin);

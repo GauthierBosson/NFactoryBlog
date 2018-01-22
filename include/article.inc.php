@@ -20,9 +20,23 @@ if($_SESSION['login'] == 1){
             echo($message);
             include("./include/formArticle.php");
         } else {
-            $connexion = mysqli_connect("localhost", "root", "", "nfactoryblog");
-            if (!$connexion) {
-                die("Erreur MySQL " . mysqli_connect_errno() . " : " . mysqli_connect_error());
+            $dsn = "mysql:dbname=nfactoryblog;
+                    host=localhost;
+                    charset=utf8";
+            $username = "root";
+            $password = "";
+
+            //$db = new PDO($dsn, $username, $password);
+
+            try {
+                $db = new PDO($dsn, $username, $password);
+            }
+
+            catch (PDOException $e) {
+                echo ($e -> getMessage());
+            }
+            if (!$db) {
+                echo "erreur";
             }
             else {
                 $message = addslashes(htmlentities($message , ENT_HTML5 , 'UTF-8'));
@@ -32,15 +46,15 @@ if($_SESSION['login'] == 1){
                         ARTCONTENU, ARTDATE)
                         VALUES (NULL, '$titre', '$chapo', '$message', NOW());";
 
-                if($result = mysqli_query($connexion, $requete)) {
+                if($result = $db -> query($requete)) {
 
-                    if (@mysqli_num_rows($result) != 0) {
+                    if ($ligne = $result -> rowCount() != 0) {
                         $_SESSION['login'] = 1;
                     }
                     else
                         $_SESSION['login'] = 0;
                 }
-                mysqli_close($connexion);
+                unset($db);
             }
         }
     }else{
