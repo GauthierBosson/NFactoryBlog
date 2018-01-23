@@ -8,6 +8,7 @@ if (isset($_COOKIE['visite'])) {
 ?>
 <?php
 session_start();
+include_once ("./functions/arrayLogin.php");
 include_once ("./functions/functionPDO.php");
 include_once("./functions/CallPage.php");
 echo($_COOKIE['visite'] . " visites");
