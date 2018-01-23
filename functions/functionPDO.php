@@ -10,7 +10,9 @@ function connectionPDO(){
         $db = new PDO($dsn, $username, $password);
     }
     catch (PDOException $e){
-        echo ($e -> getMessage());
+        //echo ($e -> getMessage());
+        $fo = fopen("erreur.txt", "a+");
+        fwrite($fo,$e->getMessage());
     }
     return $db;
 }
