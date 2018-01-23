@@ -18,21 +18,7 @@ if (isset($_POST['login'])) {
         include ("./include/formLogin.php");
     }
     else {
-        $dsn = "mysql:dbname=nfactoryblog;
-        host=localhost;
-        charset=utf8";
-        $username = "root";
-        $mdp = "";
-
-        //$db = new PDO($dsn, $username, $password);
-
-        try {
-            $db = new PDO($dsn, $username, $mdp);
-        }
-
-        catch (PDOException $e) {
-            echo ($e -> getMessage());
-        }
+        $db = connectionPDO();
         if (!$db) {
             die("Erreur MySQL " . mysqli_connect_errno() . " : " . mysqli_connect_error());
         }

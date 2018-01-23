@@ -20,21 +20,7 @@ if($_SESSION['login'] == 1){
             echo($message);
             include("./include/formArticle.php");
         } else {
-            $dsn = "mysql:dbname=nfactoryblog;
-                    host=localhost;
-                    charset=utf8";
-            $username = "root";
-            $password = "";
-
-            //$db = new PDO($dsn, $username, $password);
-
-            try {
-                $db = new PDO($dsn, $username, $password);
-            }
-
-            catch (PDOException $e) {
-                echo ($e -> getMessage());
-            }
+            $db = connectionPDO();
             if (!$db) {
                 echo "erreur";
             }

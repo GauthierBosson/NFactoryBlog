@@ -29,21 +29,7 @@ if(isset($_POST["formulaire"])) {
         include("./include/formInscription.php");
     }
     else {
-        $dsn = "mysql:dbname=nfactoryblog;
-        host=localhost;
-        charset=utf8";
-        $username = "root";
-        $password = "";
-
-        //$db = new PDO($dsn, $username, $password);
-
-        try {
-            $db = new PDO($dsn, $username, $password);
-        }
-
-        catch (PDOException $e) {
-            echo ($e -> getMessage());
-        }
+        $db = connectionPDO();
         if (!$db) {
             die("Erreur MySQL " . mysqli_connect_errno() . " : " . mysqli_connect_error());
         }
